@@ -7,7 +7,9 @@ def home(req):
     return HttpResponse('Hello From Program')
     
 def render_index(req):
-    return render(req, 'program/index.html')
+    return render(req, 'program/index.html',{
+        'title': 'Newest Version'
+    })
 
 def send_json(req):
     data = {"key":"value"}
