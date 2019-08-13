@@ -1,15 +1,4 @@
 {
     "python.autoComplete.addBrackets": true,
-    "folders": [
-        {
-            "path": "/Users/harry/Documents/Python/itsoundsgood"
-        }
-    ],
-    "settings": {
-        "python.pythonPath": "//Library/Frameworks/Python.framework/Versions/3.7/bin/python3",
-        "java.format.settings.url": "eclipse-formatter.xml",
-        "python.autoComplete.extraPaths": ["/Users/harry/Documents/Python/itsoundsgood"]
-    }
-       
-    
+    "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.7/bin/python3"
 }
