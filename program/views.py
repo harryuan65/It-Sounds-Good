@@ -7,8 +7,10 @@ def home(req):
     return HttpResponse('Hello From Program')
     
 def render_index(req):
+    youtube_url = str(req.GET.get('url'))
     return render(req, 'program/index.html',{
-        'title': 'Newest Version'
+        'title': 'Newest Version',
+        'received': youtube_url
     })
 
 def send_json(req):
@@ -17,4 +19,3 @@ def send_json(req):
     #return JsonResponse(json.dumps(data, ensure_ascii=False), safe=False)
     #return HttpResponse(json.dumps(data, ensure_ascii=False),content_type="application/json")
     #return HttpResponse(data,  'application/json')
-# Create your views here.
