@@ -1,7 +1,24 @@
 {% extends 'program/layout.html' %}
 
 {% block content %}
-<h3 class="center-align">{{title}}</h3>
-<h3 class="center-align">{{received}}</h3>
+<p class="center-align">{{version}}</p>
+
+<form action='render_index' method='post'>
+        {% csrf_token %}   
+        <div class="form-group">
+          <label>Youtube網址</label>
+          <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">>></span>
+                </div>
+                {{ form }}
+                <!-- <input type="text" class="form-control" placeholder="example: https://www.youtube.com/watch?v=D6esTdOLXh4" aria-label="youtube_url" aria-describedby="basic-addon1"> -->
+          </div>
+          <small id="emailHelp" class="form-text text-muted"> 請輸入不含list等變數的Youtube影片連結 </small>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<h4 class="center-align">Received url input = {{received}} {{ text }}</h4>
 
 {% endblock %}
