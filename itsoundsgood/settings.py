@@ -130,4 +130,4 @@ STATICFILES_DIRS = [
     'program/api/downloads/'
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'program/api/downloads')
-STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
