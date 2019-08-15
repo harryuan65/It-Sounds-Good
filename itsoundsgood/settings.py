@@ -130,4 +130,4 @@ STATICFILES_DIRS = [
     'static/program/'
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/program')
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/program')
