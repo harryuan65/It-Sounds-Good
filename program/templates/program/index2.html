@@ -97,9 +97,11 @@
             <p class="center-align">Url from query string: {{query_received}}</p>
             {% if downloaded_wav %}
             <p>Downloaded file: {{downloaded_wav}}</p>
-            <audio controls>
-                <source src="{% static downloaded_wav %}" type="audio/wav">
-            </audio>
+            <div class="d-flex justify-content-center mt-5" id="btn">
+              <audio controls>
+                  <source src="{% static downloaded_wav %}" type="audio/wav">
+              </audio>
+            </div>
             {% endif %}
         </div>
         

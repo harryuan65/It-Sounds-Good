@@ -3,7 +3,7 @@
     "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.7/bin/python3",
     "powermode.enabled": true,
     "powermode.presets": "fireworks",
-    "powermode.explosionSize": 10,
+    "powermode.explosionSize": 30,
     "powermode.shakeIntensity": 9,
     "powermode.explosionDuration": 1500
 }
