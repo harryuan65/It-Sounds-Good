@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from django.http import JsonResponse
-from .static import info
 import json
+from .api import ydl
 # from .forms import UploadFileForm
 # from .api import file_api
 
@@ -13,15 +13,15 @@ def render_index(req):
     if req.method=='GET':
       youtube_url = str(req.GET.get('url'))
       return render(req, 'program/index2.html',{# 1st way to insert template variables
-        'version': info.program_config['version'],
         'query_received': youtube_url,
         'url_received': False
       })
     elif req.POST: #the action done by submitting in form
       args = {}
       if req.POST['url_input']:
-        args['version'] = info.program_config['version']# 2nd way to insert template variables
+        filename = ydl.download(req.POST['url_input'])
         args['url_received'] = req.POST['url_input'] # Value got from form
+        args['downloaded_wav'] = filename
         return render(req, "program/index2.html", args)
       else:
         args['file_received'] = req.POST['file_uploaded']

@@ -86,7 +86,7 @@
               </div>
              
                <div class="d-flex justify-content-center mt-5" id="btn">
-                  <button type="submit" class="button btn-dark ml-3">Youtube To Wav</button>
+                  <button type="submit" class="button btn-dark ml-3">Audio</button>
                   {% if url_received %}
                   <button action="/separate/" type="submit" class="button btn-dark ml-3">Separator</button> 
                   {% endif %}
@@ -95,6 +95,12 @@
             
             <p>Url from form: {{ url_received }}</p>
             <p class="center-align">Url from query string: {{query_received}}</p>
+            {% if downloaded_wav %}
+            <p>Downloaded file: {{downloaded_wav}}</p>
+            <audio controls>
+                <source src="{% static downloaded_wav %}" type="audio/wav">
+            </audio>
+            {% endif %}
         </div>
         
         
