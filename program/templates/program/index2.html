@@ -1,0 +1,105 @@
+<html><head>
+        <meta charset="utf-8">
+        <title>itsoundsgood</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+        <style>
+        
+        .form-control {
+            display: block;
+            width: 100%;
+            max-width: 550px;
+            outline: none !important;
+            margin-top:20px;
+            text-align: center;
+            font-size: 15px;
+            color: #fff;
+            line-height: 42px;
+            height: 42px;
+            background-color: #4e4e4e;
+            border: 0;
+            border-radius: 25px;
+            position: relative;
+            cursor: text !important;
+            font-weight: 300;
+        }
+        .instruction {
+        
+            margin-top: 20px;
+            margin-bottom: 0px;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+        }
+        .button{
+                background-color:#000000;
+                color: #fff;
+                text-align: center;
+                font-size:12px;
+                padding: 10 1em;
+                border-radius: 40px;
+                border:0.5px #FFFFFF solid;
+                font-weight: 600;
+                display:inline-block;
+                width:10em;
+        }
+        
+        
+        #btn a{
+          text-decoration:none;
+          margin-top:10px;
+        }
+        .main-logo img {
+            margin-top: 100px;
+            width: 100%;
+            max-width: 400px;
+        }
+        body{
+            background-color:black
+        }
+        </style>
+        
+        
+        </head>
+        
+        <body><!--主畫面-->
+        
+        <div class="container">
+            <div class="d-flex justify-content-center ">
+                <h1 class="main-logo">
+                    {% load static %}
+                    <img src="{% static 'program/img/it.png' %}">
+                </h1>
+            </div>
+            
+             
+            <form method="post">
+                {% csrf_token %}
+              <div class="d-flex justify-content-center ">
+                  <input type="text" name="url_input" class="form-control" placeholder=" Paste a YouTube link">
+              </div>
+              <div class="d-flex justify-content-center mt-2">
+                 <h1 class="instruction">
+                   <p>convert your youtube video to a wav file or separate vocals &amp; music  </p>
+                </h1>
+              </div>
+             
+               <div class="d-flex justify-content-center mt-5" id="btn">
+                  <button type="submit" class="button btn-dark ml-3">Youtube To Wav</button>
+                  {% if url_received %}
+                  <button action="/separate/" type="submit" class="button btn-dark ml-3">Separator</button> 
+                  {% endif %}
+               </div>
+            </form>
+            
+            <p>Url from form: {{ url_received }}</p>
+            <p class="center-align">Url from query string: {{query_received}}</p>
+        </div>
+        
+        
+        
+        
+        
+        
+        </body></html>
