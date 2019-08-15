@@ -15,8 +15,6 @@ PyMySQL==0.9.3
 pytz==2019.2
 six==1.12.0
 sqlparse==0.3.0
-torch==1.1.0.post2
-torchvision==0.3.0
 tqdm==4.33.0
 typed-ast==1.4.0
 wrapt==1.11.2
