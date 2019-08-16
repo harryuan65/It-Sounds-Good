@@ -36,10 +36,13 @@ def m4atowav(path):
       result_name = out_name.split('/static/program/')[1]
       print('@@@@@@ ',result_name)
       return result_name
-    except:
-      print("FFMpeg load Error")
+    except Exception as e:
+      print("*****FFMpeg load Error:")
+      print("****** Youtube Downloader went wrong")
+
 
 def download(url, prefix=''):
+  try:
     print("=============Youtube Downloader: Initializing...========")
     BASE_DOWNLOAD_DIR = os.path.normpath(os.getcwd() + '/static/program') +'/'
     print("**** Download dir: ", BASE_DOWNLOAD_DIR)
@@ -66,13 +69,16 @@ def download(url, prefix=''):
     outfile = file_noext+'.m4a'
     file_wav = file_noext+'.wav'
     print("Start downloading ",url)
-    print(outfile)#/Users/harry/Documents/Python/itsoundsgood/static/program/소유(SoYou) X 정기고(JunggiGo) - 썸(Some) feat. 긱스 릴보이 (Lil Boi of Geeks) M_V.m4a
     if not os.path.isfile(outfile):
       ydl_setup.download([url])
+      print('****Downloaded ',outfile)
       return m4atowav(outfile)
     elif not os.path.isfile(file_wav):
       print('***** File already downloaded, converting to wav: ', outfile)
       return m4atowav(outfile)
     else:
       print("**** Audio file(.wav) already exists: ",file_wav)
+  except Exception as e:
+    print("****** Youtube Downloader went wrong")
+    print('====================',e,'======================')
 #download('https://www.youtube.com/watch?v=izGwDsrQ1eQ')
