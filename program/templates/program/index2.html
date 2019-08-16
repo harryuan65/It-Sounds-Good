@@ -98,9 +98,15 @@
             {% if downloaded_wav %}
             <p>Downloaded file: {{downloaded_wav}}</p>
             <div class="d-flex justify-content-center mt-5" id="btn">
+                <p> Wav </p>
               <audio controls>
                   <source src="{% static downloaded_wav %}" type="audio/wav">
               </audio>
+              
+                <p> Mp3 </p>
+              <audio controls>
+                    <source src="{% static downloaded_mp3 %}" type="audio/mp3">
+                </audio>
             </div>
             {% endif %}
         </div>

@@ -24,15 +24,15 @@ def update_tqdm(information):
           print("Error with:"+information['filename'])
     
 
-def m4atowav(path):
-    print("Converting ",path," to wav")
+def convert(path,ext='wav'):
+    print("Converting ",path," to ",ext)
     try:
       stream = ffmpeg.input(path)
-      out_name = path.split('.m4a')[0]+'.wav'
-      out_stream = ffmpeg.output(stream, out_name ,f='wav')
+      out_name = path.split('.m4a')[0]+'.'+ext
+      out_stream = ffmpeg.output(stream, out_name ,f=ext)
       ffmpeg.run(out_stream)
       print(out_name)
-      print("=============Youtube Downloader: Converted to wav=============")
+      print("=============Youtube Downloader: Converted to {}=============".format(ext))
       result_name = out_name.split('/static/program/')[1]
       print('@@@@@@ ',result_name)
       return result_name
@@ -72,10 +72,14 @@ def download(url, prefix=''):
     if not os.path.isfile(outfile):
       ydl_setup.download([url])
       print('****Downloaded ',outfile)
-      return m4atowav(outfile)
+      file_wav = convert(outfile,'wav')
+      file_mp3 = convert(outfile, 'mp3')
+      return file_wav, file_mp3
     elif not os.path.isfile(file_wav):
       print('***** File already downloaded, converting to wav: ', outfile)
-      return m4atowav(outfile)
+      file_wav = convert(outfile,'wav')
+      file_mp3 = convert(outfile, 'mp3')
+      return file_wav, file_mp3
     else:
       print("**** Audio file(.wav) already exists: ",file_wav)
   except Exception as e:

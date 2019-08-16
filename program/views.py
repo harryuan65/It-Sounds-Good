@@ -26,10 +26,12 @@ def render_index(req):
       if req.POST['url_input']:
         if check != req.POST['url_input']:
           check = req.POST['url_input']
-          filename = ydl_api.download(req.POST['url_input'])
+          file_wav,file_mp3 = ydl_api.download(req.POST['url_input'])
           args['url_received'] = req.POST['url_input'] # Value got from form
-          args['downloaded_wav'] = filename
-          print('####### Downloaded file, -> html view:',filename)          
+          args['downloaded_wav'] = file_wav
+          args['downloaded_mp3'] = file_mp3
+          print('####### Downloaded file, -> html view:',file_wav)          
+          print('####### Downloaded file, -> html view:',file_mp3)          
           return render(req, "program/index2.html", args)
         else:
           print(">>>>>Detected Refresh, please don't do it<<<<<<")
