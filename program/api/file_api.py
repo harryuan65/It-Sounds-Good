@@ -6,7 +6,7 @@ def clearfiles():
   print('Checking unused files in :',path)
   files = os.listdir(path)
   for f in files:
-    if f.endswith('.m4a') or f.endswith('.wav'):
+    if f.endswith('.m4a') or f.endswith('.wav') or f.endswith('.mp3'):
       print('Deleted',path + f)  
       os.remove(path + f)
   print('================File Cleaner:Cleaned===================')

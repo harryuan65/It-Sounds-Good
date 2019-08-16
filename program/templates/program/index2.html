@@ -58,6 +58,9 @@
         body{
             background-color:black
         }
+        .txt{
+            color: white;
+        }
         </style>
         
         
@@ -93,22 +96,32 @@
                </div>
             </form>
             
-            <p>Url from form: {{ url_received }}</p>
-            <p class="center-align">Url from query string: {{query_received}}</p>
-            {% if downloaded_wav %}
-            <p>Downloaded file: {{downloaded_wav}}</p>
-            <div class="d-flex justify-content-center mt-5" id="btn">
-                <p> Wav </p>
-              <audio controls>
-                  <source src="{% static downloaded_wav %}" type="audio/wav">
-              </audio>
-              
-                <p> Mp3 </p>
-              <audio controls>
-                    <source src="{% static downloaded_mp3 %}" type="audio/mp3">
-                </audio>
+
+            <div class="d-flex flex-direction-column justify-content-flex-start" >
+                <p>Url from form: {{ url_received }}</p> 
             </div>
-            {% endif %}
+            
+            <div class="d-flex flex-direction-column justify-content-flex-start" >
+                 <p class="center-align">Url from query string: {{query_received}}</p>
+            </div>
+
+
+            <div class="d-flex justify-content-space-between txt"  >
+              {% if downloaded_wav %}
+              <p>Downloaded file: <br>{{downloaded_wav}}</p>
+                <p> Wav </p><br>
+                <audio controls>
+                  <source src="{% static downloaded_wav %}" type="audio/wav">
+                </audio><br>
+              {% endif %}
+
+              {% if downloaded_wav %}
+              <p> Mp3 </p><br>
+              <audio controls>
+                <source src="{% static downloaded_mp3 %}" type="audio/mp3">
+              </audio><br>
+              {% endif %}
+            </div><br>
         </div>
         
         
