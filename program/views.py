@@ -29,6 +29,7 @@ def render_index(req):
           filename = ydl_api.download(req.POST['url_input'])
           args['url_received'] = req.POST['url_input'] # Value got from form
           args['downloaded_wav'] = filename
+          print('####### Downloaded file, -> html view:',filename)          
           return render(req, "program/index2.html", args)
         else:
           print(">>>>>Detected Refresh, please don't do it<<<<<<")
