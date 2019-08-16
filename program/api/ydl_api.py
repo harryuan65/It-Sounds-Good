@@ -38,7 +38,7 @@ def m4atowav(path):
       return result_name
     except Exception as e:
       print("*****FFMpeg load Error:")
-      print("****** Youtube Downloader went wrong")
+      print('====================',e,'======================')
 
 
 def download(url, prefix=''):
