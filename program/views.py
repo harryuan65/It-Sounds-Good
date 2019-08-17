@@ -5,24 +5,24 @@ from django.urls import reverse
 import json
 from .api import ydl_api
 from .api import file_api
-# from .forms import UploadFileForm
-# from .api import file_api
 check = ''
+args = {}
+
 def home(req):
     return HttpResponse('Hello From Program')
     
-def render_index(req):
+def index(req):
     global check
     file_api.clearfiles()
     if req.method=='GET':
       check = ''
       youtube_url = str(req.GET.get('url'))
-      return render(req, 'program/index2.html',{# 1st way to insert template variables
+      return render(req, 'program/index.html',{# 1st way to insert template variables
         'query_received': youtube_url,
         'url_received': False
       })
     elif req.POST: #the action done by submitting in form
-      args = {}
+      global args
       if req.POST['url_input']:
         if check != req.POST['url_input']:
           check = req.POST['url_input']
@@ -32,13 +32,13 @@ def render_index(req):
           args['downloaded_mp3'] = file_mp3
           print('####### Downloaded file, -> html view:',file_wav)          
           print('####### Downloaded file, -> html view:',file_mp3)          
-          return render(req, "program/index2.html", args)
+          return render(req, "program/index.html", args)
         else:
           print(">>>>>Detected Refresh, please don't do it<<<<<<")
-          return HttpResponseRedirect(reverse('render_index'))
+        return HttpResponseRedirect(reverse('index'))
       else:
         print(">>>>>>Don't download empty url you punk<<<<<")
-        return HttpResponseRedirect(reverse('render_index'))
+        return HttpResponseRedirect(reverse('index'))
 
 def send_json(req):
     data = {"key":"value"}

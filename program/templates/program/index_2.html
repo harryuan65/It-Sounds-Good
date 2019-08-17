@@ -1,0 +1,25 @@
+
+{% extends 'program/layout.html' %}
+
+{% block content %}
+{% load static %}
+
+<!-- {% include 'program/test_src.html' %} -->
+
+<h3 class="center-align">Version: {{version}}</h3>
+
+<form method="post" class='form-inline'>
+  {% csrf_token %}
+  <div class="form-group mx-sm-1 mb-2 w-75">
+  <input type="text" name="url_input" class="form-control w-100" placeholder="example:https://www.youtube.com/watch?v=Akecs2cmkpk">
+  </div>
+  
+  <button type="submit" class="btn btn-primary mb-2">Submit</button>
+</form>
+
+<p>Url from form: {{ url_received }}</p>
+<p class="center-align">Url from query string: {{query_received}}</p>
+<!-- <a href="upload_file">Upload File</a> -->
+
+{% endblock %}
+
