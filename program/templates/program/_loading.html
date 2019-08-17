@@ -1,0 +1,42 @@
+<style>
+#myProgress {
+  width: 100%;
+  background-color: grey;
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: green;
+}
+</style>
+
+<script>
+  function move() {
+  var elem = document.getElementById("myBar"); 
+  var width = 1;
+  var total = parseInt("{{total}}")
+  var downloaded = parseInt("{{downloaded}}");
+  
+  var t = document.getElementById("total");
+  var d = document.getElementById("downloaded");
+  t.innerHTML = total;
+  d.innerHTML = downloaded;
+  while(downloaded!=total){
+    var pct = downloaded/total;
+    width+=pct; 
+    elem.style.width = width + '%'; 
+    total = parseInt("{{total}}")
+    downloaded = parseInt("{{downloaded}}")
+  }
+}
+</script>
+
+
+<div id="myProgress">
+   <div id="myBar"></div>
+</div>
+<div id="total"></div>
+<div id="downloaded"></div>
+
+<script>move()</script>

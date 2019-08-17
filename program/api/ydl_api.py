@@ -4,16 +4,21 @@ import os
 from tqdm import tqdm
 import ffmpeg
 
-
+import threading
 bars = {}
+t = {'total':"-1",'downloaded':"0",'temp':"9"}
+file_wav = ""
+file_mp3 = ""
 def printf(printstr):
-  print('\33[42m'+printstr+'\33[0m')
+  print('\33[4m'+printstr+'\33[0m')
 
 def update_tqdm(information):
     filename = information['filename']
     try:
         downloaded = information['downloaded_bytes']
         total = information['total_bytes'] or information['total_bytes_estimate']
+        t['total']=str(total)
+        t['downloaded']=str(downloaded)
         if downloaded and total:
           if filename not in bars:
               bars[filename] = tqdm(desc=filename[:10], unit='B', unit_scale=True, total=total)
@@ -23,16 +28,14 @@ def update_tqdm(information):
         if os.path.isfile(information['filename']+".m4a"):
           printf("File already exists.")
         else:
-          printf("Error with:"+information['filename'])
+          printf("Error")
     
-
 def convert(path,ext='wav'):
     print("Converting ",path," to ",ext)
     try:
       stream = ffmpeg.input(path)
       out_name = path.split('.m4a')[0]+'.'+ext
       out_stream = ffmpeg.output(stream, out_name ,f=ext)
-
       ffmpeg.run(out_stream)
       printf(out_name)
       printf("=============Youtube Downloader: Converted to {}=============".format(ext))
@@ -43,13 +46,22 @@ def convert(path,ext='wav'):
       print("*****FFMpeg load Error:")
       print('====================',e,'======================')
 
+def show_progress():
+  while t['downloaded']!=t['total']:
+    if t['temp']!=t['downloaded']:
+      t['temp'] = t['downloaded'] 
+      print("\33[92m"+"downloaded = "+t['downloaded']+", total = "+t['total']+"\33[0m")
+
+  print("\33[42m"+"Finished"+"\33[0m")
 
 def download(url, prefix=''):
   try:
     printf("=============Youtube Downloader: Initializing...========")
+    file_wav = ""
+    file_mp3 = ""
     BASE_DOWNLOAD_DIR = os.path.normpath(os.getcwd() + '/static/program') +'/'
     printf("**** Download dir: "+BASE_DOWNLOAD_DIR)
-    printf("=============Youtube Downloader: Downloading "+url)
+    printf("=============Youtube Downloader: Setting options")
     download_dir = BASE_DOWNLOAD_DIR
 
     if not os.path.isdir(download_dir):
@@ -71,12 +83,16 @@ def download(url, prefix=''):
     file_noext = download_dir + prefix + title
     outfile = file_noext+'.m4a'
     file_wav = file_noext+'.wav'
-    printf("Start downloading "+url)
+    printf(">>>>>Start downloading "+url)
     if not os.path.isfile(outfile):
+      x = threading.Thread(target=show_progress)
+      x.start()
       ydl_setup.download([url])
       printf('****Downloaded '+outfile)
       file_wav = convert(outfile,'wav')
       file_mp3 = convert(outfile, 'mp3')
+      
+      x.join()
       return file_wav, file_mp3
     elif not os.path.isfile(file_wav):
       printf('***** File already downloaded, converting to wav: '+ outfile)
