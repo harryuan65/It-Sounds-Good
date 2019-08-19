@@ -1,7 +1,7 @@
 import os
 from django.conf import settings
 def printf(printstr):
-  print('\33[44m'+printstr+'\33[0m')
+  print('\33[94m'+printstr+'\33[0m')
 
 def clearfiles(): 
   printf('================File Cleaner:Initializing===============')

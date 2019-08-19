@@ -29,22 +29,33 @@ def update_tqdm(information):
           printf("File already exists.")
         else:
           printf("Error")
-    
+def remove_symbols(str_in):
+  symbols = ['!','@','#','$','%','^',"&","*","`",' ','~']
+  str_out = str_in
+  for symbol in symbols:
+    str_out = str_out.replace(symbol,'')
+  return str_out
 def convert(path,ext='wav'):
-    print("Converting ",path," to ",ext)
+    print("\33[100m")
     try:
       stream = ffmpeg.input(path)
       out_name = path.split('.m4a')[0]+'.'+ext
+      out_name = remove_symbols(out_name)
+      print(" =============FFMPEG Converting ",path.split('/')[-1].split('.m4a')[0]," to ",ext,"=============")
       out_stream = ffmpeg.output(stream, out_name ,f=ext)
       ffmpeg.run(out_stream)
       printf(out_name)
-      printf("=============Youtube Downloader: Converted to {}=============".format(ext))
+      print('\33[6m')
+      printf("=============Converted to {}=============".format(ext))
       result_name = out_name.split('/static/program/')[1]
       print('@@@@@@ ',result_name)
+      print('\33[0m')
       return result_name
     except Exception as e:
       print("*****FFMpeg load Error:")
       print('====================',e,'======================')
+      print('\33[0m')
+    
 
 def show_progress():
   while t['downloaded']!=t['total']:

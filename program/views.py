@@ -24,7 +24,8 @@ def index(req):
       youtube_url = str(req.GET.get('url'))
       return render(req, 'program/index.html',{# 1st way to insert template variables
         'query_received': youtube_url,
-        'url_received': False
+        'url_received': False,
+        # 'debugging':'http://www.youtube.com/test_url'
       })
     elif req.POST: #the action done by submitting in form
       if req.POST['url_input']:
@@ -43,9 +44,9 @@ def index(req):
         else:
           print(">>>>>Detected Refresh, please don't do it<<<<<<")
         return HttpResponseRedirect(reverse('index'))
-      else:
-        print(">>>>>>Don't download empty url you punk<<<<<")
-        return HttpResponseRedirect(reverse('index'))
+      # else:
+      #   print(">>>>>>Don't download empty url you punk<<<<<")
+      #   return HttpResponseRedirect(reverse('index'))
 
 
 def send_json(req):
