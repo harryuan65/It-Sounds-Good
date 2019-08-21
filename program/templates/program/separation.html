@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <title>Document</title>        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/separation.css'%}">
+</head>
+<body>
+    
+    {% if separated_wav %}
+    <div class=" d-flex flex-column justify-content-space-around my-4 bg-bk align-items-center" >
+       <div class="txt" style="color: white">Audio Separated ({{separated_wav}})</div>
+       <audio controls style="">
+           <source src="{% static separated_wav %}" type="audio/mp3">
+       </audio>
+    </div>
+    {% else %}
+    <div>Error</div>
+    <!-- <div class=" d-flex flex-column justify-content-space-around my-4 bg-bk align-items-center" >
+            <div class="txt" style="color: white">Audio Separated ({{separated_wav}})</div>
+            <audio controls>
+                <source src="{% static '한소아HanSoA-내맘훔친너MyHeartStolenYou.wav'%}" type="audio/mp3">
+            </audio>
+         </div> -->
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,87 @@
+form *{
+    /* border: 1px solid green; */
+}
+.form-control {
+    display: block;
+    width: 100%;
+    max-width: 550px;
+    outline: none !important;
+    margin-top:20px;
+    text-align: center;
+    font-size: 15px;
+    color: #fff;
+    line-height: 42px;
+    height: 42px;
+    background-color: #4e4e4e;
+    border: 0;
+    border-radius: 25px;
+    position: relative;
+    cursor: text !important;
+    font-weight: 300;
+}
+.instruction {
+
+    margin-top: 20px;
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+}
+.button{
+        background-color:#000000;
+        color: #fff;
+        text-align: center;
+        font-size:12px;
+        padding: 10 1em;
+        border-radius: 40px;
+        border:0.5px #FFFFFF solid;
+        font-weight: 600;
+        display:inline-block;
+        width:10em;
+}
+
+
+#btn a{
+  text-decoration:none;
+  margin-top:10px;
+}
+.main-logo img {
+    margin-top: 100px;
+    width: 100%;
+    max-width: 400px;
+}
+body{
+    background-color:black
+}
+.txt{
+    color: white;
+}
+
+@keyframes smokegif
+{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 0.8;
+    }
+}
+#sp{
+    opacity: 0.5
+}
+.weed{
+    /* border: 1px solid green; */
+}
+#notice{
+    text-align: center;
+}
+.aud{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+#audiomp3{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}

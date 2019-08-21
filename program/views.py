@@ -7,12 +7,16 @@ from .api import ydl_api
 from .api import file_api
 from multiprocessing.pool import ThreadPool
 pool = ThreadPool(processes=2)
-import threading
+from .api import separate
+import os
 # from django.views import View
 check = ''
 args = {}
-x = threading.Thread()
-
+debugging = ''
+# debugging='http://www.youtube.com/watch?v=2ZIpFytCSVc'
+STATIC_DIR = os.path.normpath(os.getcwd() + '/static/program') +'/'
+def static(filename):
+  return STATIC_DIR+filename
 def home(req):
     return HttpResponse('Hello From Program')
     
@@ -25,7 +29,7 @@ def index(req):
       return render(req, 'program/index.html',{# 1st way to insert template variables
         'query_received': youtube_url,
         'url_received': False,
-        # 'debugging':'http://www.youtube.com/test_url'
+        'debugging': debugging
       })
     elif req.POST: #the action done by submitting in form
       if req.POST['url_input']:
@@ -37,6 +41,8 @@ def index(req):
           args['url_received'] = req.POST['url_input'] # Value got from form
           args['downloaded_wav'] = file_wav
           args['downloaded_mp3'] = file_mp3
+          args['wavfile'] = file_wav.split('.')[0]
+          print('\33[5m'+'\33[0m')
           print('####### Downloaded file, -> html view:',file_wav)          
           print('####### Downloaded file, -> html view:',file_mp3) 
           async_result2 = pool.apply_async(render,(req, "program/index.html", args))
@@ -48,6 +54,15 @@ def index(req):
       #   print(">>>>>>Don't download empty url you punk<<<<<")
       #   return HttpResponseRedirect(reverse('index'))
 
+def separation(req,wav_path):
+  if req.method=="GET":
+    #wav_path = req.GET.get('file_wav')
+    #print("req.GET.get('file_wav') = " ,req.GET.get('file_wav'))
+    filename = static(wav_path+'.wav')
+    print('\33[43m'+'GET: Separation '+ filename+'\33[0m')
+    # args['separated_wav'] =  debugging
+    args['separated_wav'] = separate.execution(filename) or debugging
+    return render(req,'program/separation.html',args)
 
 def send_json(req):
     data = {"key":"value"}
