@@ -10,8 +10,13 @@ def clearfiles():
   files = os.listdir(path)
   for f in files:
     if f.endswith('.m4a') or f.endswith('.wav') or f.endswith('.mp3'):
-      printf('Deleted'+path + f)  
+      printf('Deleted '+path + f)  
       os.remove(path + f)
+  
+  data_trim_file = os.getcwd() + '/program/api/process/data_trim.wav'
+  if os.path.isfile(data_trim_file):
+    printf('Deleted '+data_trim_file)  
+    os.remove(data_trim_file)
   printf('================File Cleaner:Cleaned===================')
 
 
