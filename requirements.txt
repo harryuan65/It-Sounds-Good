@@ -1,4 +1,4 @@
-pip=19.2.2
+pip==19.2.2
 absl-py==0.7.1
 astor==0.8.0
 astroid==2.2.5
