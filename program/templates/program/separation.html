@@ -15,7 +15,7 @@
     {% if separated_wav %}
     <div class=" d-flex flex-column justify-content-space-around my-4 bg-bk align-items-center" >
        <div class="txt" style="color: white">Audio Separated ({{separated_wav}})</div>
-       <audio controls style="">
+       <audio controls>
            <source src="{% static separated_wav %}" type="audio/mp3">
        </audio>
     </div>

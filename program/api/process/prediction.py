@@ -298,7 +298,7 @@ def justdoit(path):
   print(num_data)
   
   data_trim = data[:num_data*65536]
-  librosa.output.write_wav("./data_trim.wav",data_trim,sr=sample_rate)
+  librosa.output.write_wav(BASE_DIR+"data_trim.wav",data_trim,sr=sample_rate)
   
   dataArray = np.empty(shape=(num_data,65536),dtype = data.dtype)
   
