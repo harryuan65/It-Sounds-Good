@@ -7,4 +7,4 @@ urlpatterns = [
   path('', views.index,name='index'),
   path('separation/<path:wav_path>/', views.separation,name='separation'),
   path('send_json', views.send_json ,name='send_json'),
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
