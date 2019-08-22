@@ -5,8 +5,8 @@ from django.urls import reverse
 import json
 from .api import ydl_api
 from .api import file_api
-from multiprocessing.pool import ThreadPool
-pool = ThreadPool(processes=2)
+# from multiprocessing.pool import ThreadPool
+# pool = ThreadPool(processes=2)
 from .api import separate
 import os
 # from django.views import View
@@ -36,17 +36,15 @@ def index(req):
         if check != req.POST['url_input']:
           print('\33[41m'+'POST: Got url'+'\33[0m')
           check = req.POST['url_input']
-          async_result = pool.apply_async(ydl_api.download, (req.POST['url_input'], ''))
-          file_wav, file_mp3 = async_result.get()
+          file_wav, file_mp3 = ydl_api.download(req.POST['url_input'])
           args['url_received'] = req.POST['url_input'] # Value got from form
           args['downloaded_wav'] = file_wav
           args['downloaded_mp3'] = file_mp3
           args['wavfile'] = file_wav.split('.')[0]
           print('\33[5m'+'\33[0m')
           print('####### Downloaded file, -> html view:',file_wav)          
-          print('####### Downloaded file, -> html view:',file_mp3) 
-          async_result2 = pool.apply_async(render,(req, "program/index.html", args))
-          return async_result2.get()
+          print('####### Downloaded file, -> html view:',file_mp3)
+          return render(req, "program/index.html", args)
         else:
           print(">>>>>Detected Refresh, please don't do it<<<<<<")
         return HttpResponseRedirect(reverse('index'))
