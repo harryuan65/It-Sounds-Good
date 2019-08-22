@@ -128,14 +128,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/program/'
+STATIC_URL = '/static/'
 MEDIA_URL= '/media/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static/program/")
+    os.path.join(BASE_DIR, "static")
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/program')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 import dj_database_url
 db_from_env = dj_database_url.config()

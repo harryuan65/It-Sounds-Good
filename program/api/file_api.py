@@ -5,7 +5,7 @@ def printf(printstr):
 
 def clearfiles(): 
   printf('================File Cleaner:Initializing===============')
-  path = os.getcwd() + settings.STATIC_URL +'program/'
+  path = os.getcwd() + settings.STATIC_URL 
   printf('Checking unused files in :'+path)
   files = os.listdir(path)
   for f in files:

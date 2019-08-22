@@ -14,7 +14,7 @@ check = ''
 args = {}
 debugging = ''
 # debugging='http://www.youtube.com/watch?v=2ZIpFytCSVc'
-STATIC_DIR = os.path.normpath(os.getcwd() + '/static/program') +'/'
+STATIC_DIR = os.path.normpath(os.getcwd() + '/static') +'/'
 def static(filename):
   return STATIC_DIR+filename
 def home(req):

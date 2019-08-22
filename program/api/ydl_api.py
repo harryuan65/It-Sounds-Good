@@ -47,7 +47,7 @@ def convert(path,ext='wav'):
       printf(out_name)
       print('\33[6m')
       printf("=============Converted to {}=============".format(ext))
-      result_name = out_name.split('/static/program/')[1]
+      result_name = out_name.split('/static/')[1]
       print('@@@@@@ ',result_name)
       print('\33[0m')
       return result_name
@@ -70,7 +70,7 @@ def download(url, prefix=''):
     printf("=============Youtube Downloader: Initializing...========")
     file_wav = ""
     file_mp3 = ""
-    BASE_DOWNLOAD_DIR = os.path.normpath(os.getcwd() + '/static/program') +'/'
+    BASE_DOWNLOAD_DIR = os.path.normpath(os.getcwd() + '/static') +'/'
     printf("**** Download dir: "+BASE_DOWNLOAD_DIR)
     printf("=============Youtube Downloader: Setting options")
     download_dir = BASE_DOWNLOAD_DIR
