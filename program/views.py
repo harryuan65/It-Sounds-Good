@@ -7,7 +7,6 @@ from .api import ydl_api
 from .api import file_api
 # from multiprocessing.pool import ThreadPool
 # pool = ThreadPool(processes=2)
-from .api import separate
 import os
 # from django.views import View
 check = ''
@@ -19,7 +18,7 @@ def static(filename):
   return STATIC_DIR+filename
 def home(req):
     return HttpResponse('Hello From Program')
-    
+
 def index(req):
     global check, args
     if req.method=='GET':
@@ -42,7 +41,7 @@ def index(req):
           args['downloaded_mp3'] = file_mp3
           args['wavfile'] = file_wav.split('.')[0]
           print('\33[5m'+'\33[0m')
-          print('####### Downloaded file, -> html view:',file_wav)          
+          print('####### Downloaded file, -> html view:',file_wav)
           print('####### Downloaded file, -> html view:',file_mp3)
           return render(req, "program/index.html", args)
         else:
@@ -52,16 +51,6 @@ def index(req):
       #   print(">>>>>>Don't download empty url you punk<<<<<")
       #   return HttpResponseRedirect(reverse('index'))
 
-def separation(req,wav_path):
-  if req.method=="GET":
-    #wav_path = req.GET.get('file_wav')
-    #print("req.GET.get('file_wav') = " ,req.GET.get('file_wav'))
-    filename = static(wav_path+'.wav')
-    print('\33[43m'+'GET: Separation '+ filename+'\33[0m')
-    # args['separated_wav'] =  debugging
-    args['separated_wav'] = separate.execution(filename) or debugging
-    return render(req,'program/separation.html',args)
-
 def send_json(req):
     data = {"key":"value"}
     return JsonResponse(data)
@@ -70,4 +59,4 @@ def send_json(req):
 # class LoadingView(View):
 #   def get(self, request, *args):
 #     return render(request,"program/loading.html",t)
-  
+

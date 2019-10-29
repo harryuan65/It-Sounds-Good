@@ -55,12 +55,12 @@ def convert(path,ext='wav'):
       print("*****FFMpeg load Error:")
       print('====================',e,'======================')
       print('\33[0m')
-    
+
 
 def show_progress():
   while t['downloaded']!=t['total']:
     if t['temp']!=t['downloaded']:
-      t['temp'] = t['downloaded'] 
+      t['temp'] = t['downloaded']
       print("\33[92m"+"downloaded = "+t['downloaded']+", total = "+t['total']+"\33[0m")
 
   print("\33[42m"+"Finished"+"\33[0m")
@@ -102,7 +102,7 @@ def download(url, prefix=''):
       printf('****Downloaded '+outfile)
       file_wav = convert(outfile,'wav')
       file_mp3 = convert(outfile, 'mp3')
-      
+
       x.join()
       return file_wav, file_mp3
     elif not os.path.isfile(file_wav):

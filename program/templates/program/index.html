@@ -2,7 +2,7 @@
         <meta charset="utf-8">
         <title>It Sounds Good - Make Cleaner Instrumental Music!</title>
         {% load static %}
-        
+
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -10,9 +10,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="{% static 'stylesheets/index.css'%}" >
-       
+
         </head>
-        
+
         <body><!--主畫面-->
 
         <div class="container">
@@ -21,8 +21,8 @@
                     <a href="/"><img src="{% static 'img/it.png' %}"></a>
                 </h1>
             </div>
-            
-             
+
+
             <form method="post" id='down_form'>
                 {% csrf_token %}
               <div class="d-flex justify-content-center ">
@@ -30,35 +30,26 @@
               </div>
               <div class="d-flex justify-content-center mt-2">
                  <h1 class="instruction">
-                   <p>convert your youtube video to audio file or separate vocals &amp; music  </p>
+                   <p>convert your youtube video to audio file &amp; music  </p>
                 </h1>
               </div>
             </form>
             {% if download_wav %}
-            
+
             {% endif %}
             <div class="d-flex justify-content-center" id="btn">
                     <button class="button btn-dark ml-3" form="down_form" id="down">Audio</button>
                     {% if debugging %}
                     <p> Debugging: {{debugging}}</p>
                     {% endif %}
-                    {% if downloaded_wav %}
-                    <form action="{% url 'separation' wav_path=wavfile %}" method="get" id="form_sep">
-                        <button class="button btn-dark ml-3" form="form_sep" id="sep">Separator</button>             
-                    </form>
-                    {% elif debugging %}
-                    <form action="{% url 'separation' wav_path=debugging %}" method="get" id="form_sep">
-                        <button class="button btn-dark ml-3" form="form_sep" id="sep">Separator</button>             
-                    </form>
-                    {% endif %}
            </div>
                 <div class="d-flex flex-row justify-content-center mt-4 weed">
-                        <h2 id="notice" class="weed" style="color:#FFFFFF"></h2> 
-                </div>   
+                        <h2 id="notice" class="weed" style="color:#FFFFFF"></h2>
+                </div>
             <!-- <div class="d-flex flex-direction-column justify-content-flex-start" >
-                <p>Url from form: {{ url_received }}</p> 
+                <p>Url from form: {{ url_received }}</p>
             </div> -->
-            
+
             <!-- <div class="d-flex flex-direction-column justify-content-flex-start" >
                  <p class="center-align">Url from query string: {{query_received}}</p>
             </div> -->
@@ -86,11 +77,6 @@
                   // document.getElementById("sp").style.animation="smokegif 0.3s ease-out ";
                 }
             })
-
-            document.getElementById('sep').addEventListener('click',function() {
-                document.getElementById("notice").innerHTML = "Separating...";
-                document.getElementById("notice").style.animation="smokegif 0.3s ease-out";
-            })
         </script>
-        
+
         </body></html>
