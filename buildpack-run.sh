@@ -1,0 +1,1 @@
+echo "這個buildpack是用來再build的時候執行bash指令用的，現在我只有echo這句話"
