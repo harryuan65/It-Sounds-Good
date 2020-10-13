@@ -26,7 +26,7 @@ llvmlite==0.29.0
 mccabe==0.6.1
 mysqlclient==1.4.4
 numba==0.45.1
-Pillow==6.1.0
+Pillow==7.1.0
 protobuf==3.9.1
 psycopg2==2.8.3
 pycparser==2.19
